@@ -1,10 +1,11 @@
 const express = require("express");
-const webpush = require("web-push");
 const notificationRoute = require("./routes/notification.routes");
+const cors = require("cors");
 const dbConnect = require("./config/dbconnect");
 require("dotenv").config();
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

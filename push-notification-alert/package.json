@@ -1,6 +1,7 @@
 {
   "name": "push-notification-alert",
   "private": true,
+  "proxy": "https://push-notificaion-be.vercel.app/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
