@@ -1,6 +1,14 @@
 console.log('Service Worker Loaded...');
 
-self.addEventListener('push', () => {
-    self.registration.showNotification("hello world", {})
+self.addEventListener('push', (e) => {
+    const data = e.data.json();
+    console.log('Push Received...');
+    self.registration.showNotification(data.title, {
+        body: data.body
+    })
+    // const notification = new self.Notification(data.title, {
+    //     body: data.body,
+    //     tag: "simple-push-demo-notification"
+    //   });
 });
 
