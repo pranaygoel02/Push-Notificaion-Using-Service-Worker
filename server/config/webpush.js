@@ -6,12 +6,17 @@ const vapidKeys =
   privateKey: "fbwx1OfWIR_GAQ7T4yFiuGKJL_mm05q2zyOdcrMuqP8",
 };
 
-const pushNotification = () => {
+const pushNotification = async (sub, payload) => {
+  console.log("Pushing notification...");
+  console.log(sub, payload);
   webpush.setVapidDetails(
       'mailto:test@test.com',
       vapidKeys.publicKey,
       vapidKeys.privateKey
     );
+    await webpush.sendNotification(sub, payload).catch((err) => {
+      console.error(err);
+    });
 }
 
-module.exports = pushNotification;
+module.exports = {pushNotification};
