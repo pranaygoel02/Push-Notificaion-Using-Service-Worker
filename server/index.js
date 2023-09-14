@@ -21,6 +21,10 @@ app.use(
 
 app.use(express.json());
 
+app.get("/", (req, res) => {
+    res.send("Welcome to Push Notification Server");
+});
+
 app.use("/notifications", notificationRoute);
 
 const PORT = process.env.PORT || 5000;
