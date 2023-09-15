@@ -6,16 +6,16 @@ const cors = require("cors");
 const dbConnect = require("./config/dbconnect");
 require("dotenv").config();
 
-const { initializeApp, applicationDefault } = require('firebase-admin/app');
+// const { initializeApp, applicationDefault } = require('firebase-admin/app');
 
-process.env.GOOGLE_APPLICATION_CREDENTIALS;
+// process.env.GOOGLE_APPLICATION_CREDENTIALS;
 
-initializeApp(
-    {
-        credential: applicationDefault(),
-        projectId: "push-notification-demo-d357f",
-    }
-);
+// initializeApp(
+//     {
+//         credential: applicationDefault(),
+//         projectId: "push-notification-demo-d357f",
+//     }
+// );
 
 const app = express();
 app.use(cors());
