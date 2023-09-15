@@ -1,8 +1,21 @@
 const express = require("express");
 const notificationRoute = require("./routes/notification.routes");
+const fcmRoutes = require("./routes/fms.routes");
+const twilioRoutes = require("./routes/twilio.route");
 const cors = require("cors");
 const dbConnect = require("./config/dbconnect");
 require("dotenv").config();
+
+const { initializeApp, applicationDefault } = require('firebase-admin/app');
+
+process.env.GOOGLE_APPLICATION_CREDENTIALS;
+
+initializeApp(
+    {
+        credential: applicationDefault(),
+        projectId: "push-notification-demo-d357f",
+    }
+);
 
 const app = express();
 app.use(cors());
@@ -14,6 +27,8 @@ app.get("/", async (req, res) => {
 });
 
 app.use("/notifications", notificationRoute);
+app.use("/fcm", fcmRoutes)
+app.use("/twilio", twilioRoutes);
 
 const PORT = process.env.PORT || 5000;
 
