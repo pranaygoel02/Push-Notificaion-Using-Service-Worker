@@ -16,6 +16,7 @@ router.post('/subscribe', async (req, res) => {
             message: 'Subscription saved successfully.',
         });
     } catch (e) {
+        console.log(e);
         res.status(500).json({
             message: 'An error occurred while saving the subscription.',
         });
