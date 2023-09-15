@@ -3,12 +3,12 @@ const { pushNotification } = require("./config/webpush");
 pushNotification(
   {
     endpoint:
-      "https://wns2-pn1p.notify.windows.com/w/?token=BQYAAAA%2fY5lOaJhBEvWeeqDnmK9c%2bNOWJns86m4tK2IdOipaGhlNghdqbXb3n3jkkzjBBIeT4bipauo6UpxFWUa5%2f3sszSKTrOYT6IGIdhyOwpN9ejRd391omJq2xswKNy7xQ%2fdvcbnvEA22LeJDD%2bGfHnf1XGRnXP%2f5rNpiDvpPA95X7MruIEGWRL68Twuw54TfM%2b1qGxXrkl9g9%2btpnZkNiJNcL45FNJAfD64fbpsAuvF647b06uobucoPXxPtyM4%2bU64nBiu6SK4wfpxHvWTajnPWYu2PvjvslpEfuBv1ZYCdbfweMxwchsNSSiPSmxDdDo8%3d",
+      "https://fcm.googleapis.com/fcm/send/dkjiQqeYsko:APA91bG4v43dmfy1r3TCaPVWUCwuTiKDLGKflmA2GHsbdG-e8RGTviB4yxnGMZuHO18cKnbZBuBMMdmqNxuglINZXKQgGvhdiA0xJKCPJB4WIpqozS4kBmYAcEd88fzPZ81V6jNVcL69",
     expirationTime: null,
     keys: {
       p256dh:
-        "BFSy3FnCZ-lfxHCNqA_oeUXFdShY5IV0IH03IkphKAyodL_hXS-msgRhtDGDkalJv7FgDDNUMjuILv6YOgu3ejY",
-      auth: "brdMrrFIN6doblv0RxEn7Q",
+        "BCnQ37g5852L8kXjnS8aLWY7BlfP0LhLT3QxQH_m3RNC4p0nVCORZOBgOB7RX2FCljZcStEcovClQ69vhwJcyxI",
+      auth: "epMUlbhRGctOiq3BMFSXuA",
     },
   },
   JSON.stringify({ title: "Welcome", body: "Thanks for subscribing!" })
