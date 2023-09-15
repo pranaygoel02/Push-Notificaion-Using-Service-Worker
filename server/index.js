@@ -27,7 +27,7 @@ app.get("/", async (req, res) => {
 });
 
 app.use("/notifications", notificationRoute);
-app.use("/fcm", fcmRoutes)
+// app.use("/fcm", fcmRoutes)
 app.use("/twilio", twilioRoutes);
 
 const PORT = process.env.PORT || 5000;
