@@ -6,19 +6,30 @@ const cors = require("cors");
 const dbConnect = require("./config/dbconnect");
 require("dotenv").config();
 
-// const { initializeApp, applicationDefault } = require('firebase-admin/app');
+const { initializeApp, applicationDefault } = require('firebase-admin/app');
 
-// process.env.GOOGLE_APPLICATION_CREDENTIALS;
+process.env.GOOGLE_APPLICATION_CREDENTIALS;
 
-// initializeApp(
-//     {
-//         credential: applicationDefault(),
-//         projectId: "push-notification-demo-d357f",
-//     }
-// );
+initializeApp(
+    {
+        credential: applicationDefault(),
+        projectId: "notification-demo-e9fb0",
+    }
+);
 
 const app = express();
 app.use(cors());
+app.use(
+    cors({
+      origin: "*",
+    })
+  );
+  
+  app.use(
+    cors({
+      methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+    })
+  );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -27,7 +38,7 @@ app.get("/", async (req, res) => {
 });
 
 app.use("/notifications", notificationRoute);
-// app.use("/fcm", fcmRoutes)
+app.use("/fcm", fcmRoutes)
 app.use("/twilio", twilioRoutes);
 
 const PORT = process.env.PORT || 5000;
