@@ -7,7 +7,8 @@ import {
   subscribeToNotifications,
   unsubscribeFromNotifications,
   checkIsSubscribed,
-  sendNotification
+  sendNotification,
+  sendNotificationToAll
 } from "./util/NotificationAccess";
 import { generateToken } from "./firebase";
 
@@ -71,9 +72,9 @@ function App() {
         <button type="submit">Send</button>
       </form>
       <button
-          onClick={unsubscribeFromNotifications}
+          onClick={sendNotificationToAll}
         >
-          Unsubscribe
+          Send Alert
         </button>
       
     </div>

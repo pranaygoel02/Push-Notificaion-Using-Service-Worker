@@ -12,6 +12,12 @@ const firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
+self.addEventListener('notificationclick', function(event) {
+  
+  event.notification.close();
+   clients.openWindow("/");
+}, false);
+
 messaging.onBackgroundMessage((payload) => {
   console.log(
     "[firebase-messaging-sw.js] Received background message ",
@@ -19,7 +25,8 @@ messaging.onBackgroundMessage((payload) => {
   );
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
-    body: payload.notification.body
+    body: payload.notification.body,
+    icon: "https://cdn4.iconfinder.com/data/icons/google-i-o-2016/512/google_firebase-2-512.png",
   };
 
   return self.registration.showNotification(notificationTitle, notificationOptions);

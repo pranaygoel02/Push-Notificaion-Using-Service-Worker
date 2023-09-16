@@ -46,11 +46,11 @@ const subscribeToNotifications = async () => {
     }
     console.log('Permission granted');
     const sw = await navigator.serviceWorker.ready;
-    const pushSubscription = await sw.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(import.meta.env.VITE_PUBLIC_VAPID_KEY)
-    });
-    console.log(pushSubscription);
+    // const pushSubscription = await sw.pushManager.subscribe({
+    //     userVisibleOnly: true,
+    //     applicationServerKey: urlBase64ToUint8Array(import.meta.env.VITE_PUBLIC_VAPID_KEY)
+    // });
+    // console.log(pushSubscription);
     const token = await generateToken();
     try {
         // const res = await axiosInstance.post('/notifications/subscribe', pushSubscription, {
@@ -118,5 +118,15 @@ const sendNotification = async (e) => {
     console.log(res);
 }
 
+const sendNotificationToAll = async (e) => {
+    e.preventDefault();
+    const res = await axiosInstance.post('/fcm/send-all', {}, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    console.log(res);
+}
 
-export {subscribeToNotifications, registerServiceWorker, checkPushManager, checkNotificationSupport, unsubscribeFromNotifications, checkIsSubscribed, sendNotification };
+
+export {subscribeToNotifications, registerServiceWorker, checkPushManager, checkNotificationSupport, unsubscribeFromNotifications, checkIsSubscribed, sendNotification, sendNotificationToAll };

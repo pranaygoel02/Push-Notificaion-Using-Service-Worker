@@ -7,7 +7,23 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      injectRegister: "null",
+      manifest: {
+        name: "Push Notification Alert",
+        short_name: "Push Notification Alert",
+        theme_color: "#ffffff",
+        background_color: "#ffffff",
+        display: "standalone",
+        start_url: "/",
+        scope: "/",
+        icons: [
+          {
+            src: "/icons/alert_icon.png",
+            sizes: "192x192",
+            type: "image/png",
+            purpose: "any maskable",
+          },
+        ]
+      }
     }),
   ],
 });
