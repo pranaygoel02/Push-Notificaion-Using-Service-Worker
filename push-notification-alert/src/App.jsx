@@ -7,7 +7,9 @@ import {
   subscribeToNotifications,
   unsubscribeFromNotifications,
   checkIsSubscribed,
+  sendNotification
 } from "./util/NotificationAccess";
+import { generateToken } from "./firebase";
 
 function App() {
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -16,17 +18,29 @@ function App() {
     await registerServiceWorker();
     await checkPushManager();
     await checkNotificationSupport();
-    const isSubscribed = await checkIsSubscribed();
-    setIsSubscribed(isSubscribed);
+    // const isSubscribed = await checkIsSubscribed();
+    // setIsSubscribed(isSubscribed);
   }, []);
 
   useEffect(() => {
     checkAllPermissions();
   }, [checkAllPermissions]);
 
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("/firebase-messaging-sw.js")
+      .then(function (registration) {
+        console.log("[SW]: SCOPE: ", registration.scope);
+        return registration.scope;
+      })
+      .catch(function (err) {
+        return err;
+      });
+  }
+
   return (
     <div>
-      {isSubscribed ? "Subscribed" : "Not subscribed"}
+      {/* {isSubscribed ? "Subscribed" : "Not subscribed"}
       {isSubscribed ? (
         <button
           onClick={async (e) => {
@@ -45,7 +59,23 @@ function App() {
         >
           Subscribe
         </button>
-      )}
+      )} */}
+
+      <button
+        onClick={subscribeToNotifications}
+      >
+        FCM Subscribe
+      </button>
+      <form onSubmit={sendNotification}>
+        <input placeholder="Enter token" />
+        <button type="submit">Send</button>
+      </form>
+      <button
+          onClick={unsubscribeFromNotifications}
+        >
+          Unsubscribe
+        </button>
+      
     </div>
   );
 }
